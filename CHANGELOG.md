@@ -2,5 +2,5 @@
 * Change public static $dictionary to private static $dictionary
 * Fix issue with adding new translates in the add() method.
 
-# v1.0.0, 2018-04-27
+# v1.0.0, 2018-04-30
 * Initial release
