@@ -19,7 +19,7 @@ class I18n
      *
      * @var array
      */
-    public static $dictionary = [];
+    private static $dictionary = [];
 
     /**
      * Add translation keys
@@ -33,7 +33,7 @@ class I18n
      */
     public static function add(string $namespace, string $locale, array $translates = []) : void
     {
-        static::$dictionary[$namespace][$locale][] = $translates;
+        static::$dictionary[$namespace][$locale] = $translates;
     }
 
     /**
