@@ -1,5 +1,5 @@
 # I18n Component
-![version](https://img.shields.io/badge/version-1.0.1-brightgreen.svg?style=flat-square "Version")
+![version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg?style=flat-square "Version")
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/flextype-components/i18n/blob/master/LICENSE)
 
 I18n Component for messages internationalization of your application.
@@ -18,12 +18,12 @@ use Flextype\Component\I18n\I18n;
 
 Add translation keys
 ```php
-I18n::add('auth', 'ru', ['login' => 'Login', 'password' => 'Password']);
+I18n::add(['auth_login' => 'Login', 'auth_password' => 'Password'], 'ru');
 ```
 
 Returns translation of a string. If no translation exists, the original string will be returned. No parameters are replaced.
 ```php
-$translated_string = I18n::find('login', 'auth', 'ru');
+$translated_string = I18n::find('auth_login', 'ru');
 ```
 
 Global Translation/Internationalization function.
@@ -31,10 +31,10 @@ Accepts an translation key and returns its translation for selected language.
 If the given translation key is not available in the current dictionary the translation key will be returned.
 ```php
 // Display a translated message
-echo __('login', 'auth', 'ru');
+echo __('auth_login', 'auth', 'ru');
 
 // With parameter replacement
-echo __('hello_username', 'auth', 'ru', [':username' => $username]);
+echo __('auth_welcome_message', 'ru', [':username' => $username]);
 ```
 
 ## License

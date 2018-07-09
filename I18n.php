@@ -24,35 +24,33 @@ class I18n
     /**
      * Add translation keys
      *
-     * I18n::add('auth', 'ru', ['login' => 'Login', 'password' => 'Password']);
+     * I18n::add(['auth_login' => 'Login', 'auth_password' => 'Password'], 'ru');
      *
-     * @param  string $namespace  Namespace
-     * @param  string $locale     Locale
      * @param  string $translates Translation keys and values to add
+     * @param  string $locale     Locale
      * @return void
      */
-    public static function add(string $namespace, string $locale, array $translates = []) : void
+    public static function add(array $translates, string $locale) : void
     {
-        static::$dictionary[$namespace][$locale] = $translates;
+        I18n::$dictionary[$locale] = $translates;
     }
 
     /**
      * Returns translation of a string. If no translation exists, the original
      * string will be returned. No parameters are replaced.
      *
-     * $translated_string = I18n::find('login', 'auth', 'ru');
+     * $translated_string = I18n::find('auth_login', 'ru');
      *
      * @param  string $translate Translate to find
-     * @param  string $namespace Namespace
      * @param  string $locale    Locale
      * @param  array  $values    Values to replace in the translated text
      * @return string
      */
-    public static function find(string $translate, string $namespace, string $locale, array $values = []) : string
+    public static function find(string $translate, string $locale, array $values = []) : string
     {
         // Search current string to translate in the Dictionary
-        if (isset(static::$dictionary[$namespace][$locale][$translate])) {
-            $translate = static::$dictionary[$namespace][$locale][$translate];
+        if (isset(I18n::$dictionary[$locale][$translate])) {
+            $translate = I18n::$dictionary[$locale][$translate];
             $translate = empty($values) ? $translate : strtr($translate, $values);
         } else {
             $translate = $translate;
@@ -71,19 +69,18 @@ if ( ! function_exists('__')) {
      * translation key will be returned.
      *
      * // Display a translated message
-     * echo __('login', 'auth', 'ru');
+     * echo __('auth_login', 'auth', 'ru');
      *
      * // With parameter replacement
-     * echo __('hello_username', 'auth', 'ru', [':username' => $username]);
+     * echo __('auth_welcome_message', 'ru', [':username' => $username]);
      *
      * @param  string $translate Translate to find
-     * @param  string $namespace Namespace
      * @param  string $locale    Locale
      * @param  array  $values    Values to replace in the translated text
      * @return string
      */
-    function __(string $translate, string $namespace, string $locale, array $values = []) : string
+    function __(string $translate, string $locale, array $values = []) : string
     {
-        return I18n::find($translate, $namespace, $locale, $values);
+        return I18n::find($translate, $locale, $values);
     }
 }

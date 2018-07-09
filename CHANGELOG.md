@@ -1,3 +1,6 @@
+# v1.1.0, 2018-07-10
+* Remove namespace from dictionaries 
+
 # v1.0.1, 2018-05-13
 * Change public static $dictionary to private static $dictionary
 * Fix issue with adding new translates in the add() method.
