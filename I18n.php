@@ -32,7 +32,11 @@ class I18n
      */
     public static function add(array $translates, string $locale) : void
     {
-        I18n::$dictionary[$locale] = $translates;
+        if (isset(I18n::$dictionary[$locale])) {
+            I18n::$dictionary[$locale] += $translates;
+        } else {
+            I18n::$dictionary[$locale] = $translates;
+        }
     }
 
     /**
