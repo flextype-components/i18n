@@ -1,5 +1,5 @@
 # I18n Component
-![version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg?style=flat-square "Version")
+![version](https://img.shields.io/badge/version-1.2.0-brightgreen.svg?style=flat-square "Version")
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/flextype-components/i18n/blob/master/LICENSE)
 
 I18n Component for messages internationalization of your application.
@@ -35,6 +35,11 @@ echo __('auth_login', 'auth', 'ru');
 
 // With parameter replacement
 echo __('auth_welcome_message', 'ru', [':username' => $username]);
+```
+
+Set default locale
+```php
+I18n::$locale = 'ru';
 ```
 
 ## License

@@ -1,5 +1,6 @@
-# v1.1.1, 2018-11-11
-* Fixing Add translation keys method
+# v1.2.0, 2018-11-25
+* Set $dictionary private static
+* New public static $locale added for setup default Locale - en
 
 # v1.1.0, 2018-07-10
 * Remove namespace from dictionaries

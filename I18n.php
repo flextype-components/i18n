@@ -22,6 +22,13 @@ class I18n
     private static $dictionary = [];
 
     /**
+     * Default locale
+     *
+     * @var string
+     */
+    public static $locale = 'en';
+
+    /**
      * Add translation keys
      *
      * I18n::add(['auth_login' => 'Login', 'auth_password' => 'Password'], 'ru');
@@ -30,8 +37,10 @@ class I18n
      * @param  string $locale     Locale
      * @return void
      */
-    public static function add(array $translates, string $locale) : void
+    public static function add(array $translates, string $locale = null) : void
     {
+        $locale = ($locale === null) ? I18n::$locale : $locale;
+
         if (isset(I18n::$dictionary[$locale])) {
             I18n::$dictionary[$locale] += $translates;
         } else {
@@ -50,8 +59,10 @@ class I18n
      * @param  array  $values    Values to replace in the translated text
      * @return string
      */
-    public static function find(string $translate, string $locale, array $values = []) : string
+    public static function find(string $translate, string $locale = null, array $values = []) : string
     {
+        $locale = ($locale === null) ? I18n::$locale : $locale;
+
         // Search current string to translate in the Dictionary
         if (isset(I18n::$dictionary[$locale][$translate])) {
             $translate = I18n::$dictionary[$locale][$translate];
@@ -83,7 +94,7 @@ if ( ! function_exists('__')) {
      * @param  array  $values    Values to replace in the translated text
      * @return string
      */
-    function __(string $translate, string $locale, array $values = []) : string
+    function __(string $translate, string $locale = null, array $values = []) : string
     {
         return I18n::find($translate, $locale, $values);
     }
